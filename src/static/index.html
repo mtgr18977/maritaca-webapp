@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maritaca Vision - OCR com IA</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-eye"></i> Maritaca Vision</h1>
+            <p>Extraia texto de imagens e obtenha respostas inteligentes</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="upload-section" class="card">
+            <h2>Envie sua imagem</h2>
+            <p>Faça upload de uma imagem contendo texto para processamento</p>
+            
+            <div class="upload-container">
+                <div id="drop-area">
+                    <form id="upload-form">
+                        <input type="file" id="file-input" accept="image/*" hidden>
+                        <label for="file-input" class="file-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Escolha uma imagem ou arraste aqui</span>
+                        </label>
+                        <div id="preview-container" class="hidden">
+                            <img id="preview-image" src="#" alt="Pré-visualização">
+                            <button type="button" id="remove-image" class="btn-icon">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="camera-option">
+                    <button id="camera-button" class="btn secondary">
+                        <i class="fas fa-camera"></i> Usar Câmera
+                    </button>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="process-button" class="btn primary" disabled>
+                    Processar Imagem
+                </button>
+            </div>
+        </section>
+
+        <section id="processing-section" class="card hidden">
+            <h2>Processando...</h2>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p id="status-message">Enviando imagem...</p>
+            </div>
+        </section>
+
+        <section id="result-section" class="card hidden">
+            <h2>Resultado</h2>
+            
+            <div class="result-container">
+                <div class="result-tabs">
+                    <button class="tab-button active" data-tab="extracted-text">Texto Extraído</button>
+                    <button class="tab-button" data-tab="maritaca-response">Resposta da Maritaca</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="extracted-text" class="tab-pane active">
+                        <div class="text-content">
+                            <pre id="ocr-result">O texto extraído da imagem aparecerá aqui.</pre>
+                        </div>
+                    </div>
+                    
+                    <div id="maritaca-response" class="tab-pane">
+                        <div class="text-content">
+                            <div id="api-result">A resposta da API Maritaca aparecerá aqui.</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-actions">
+                    <button id="copy-button" class="btn secondary">
+                        <i class="fas fa-copy"></i> Copiar
+                    </button>
+                    <button id="new-query-button" class="btn primary">
+                        Nova Consulta
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="camera-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Capturar Imagem</h3>
+                    <button id="close-camera" class="btn-icon">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <video id="camera-stream" autoplay></video>
+                    <canvas id="camera-canvas" class="hidden"></canvas>
+                    <div class="camera-controls">
+                        <button id="capture-button" class="btn primary">
+                            <i class="fas fa-camera"></i> Capturar
+                        </button>
+                        <button id="retake-button" class="btn secondary hidden">
+                            <i class="fas fa-redo"></i> Nova Foto
+                        </button>
+                        <button id="use-photo-button" class="btn primary hidden">
+                            <i class="fas fa-check"></i> Usar Foto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Maritaca Vision - Powered by <a href="https://maritaca.ai" target="_blank">Maritaca.ai</a></p>
+        </div>
+    </footer>
+
+    <script src="static/js/main.js"></script>
+</body>
+</html>
